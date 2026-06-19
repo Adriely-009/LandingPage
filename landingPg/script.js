@@ -1,2 +1,1 @@
 alert("Muffatão")
-alert("Testes")
