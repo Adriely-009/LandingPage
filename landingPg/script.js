@@ -1,1 +1,2 @@
 alert("Muffatão")
+alert("Testes")
