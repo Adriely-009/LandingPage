@@ -1,5 +1,98 @@
-h1 {
-    color: brown;
-    text-align: center;
-    font-size: 90px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffff;
+    color: #333;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #fff;
+}
+
+.header-logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-principal {
+    height: 100px;
+    width: 100%;
+}
+
+.logo-selo {
+    height: 100px;
+    width: 100%;
+}
+
+.btn-cadastro {
+    background-color: #e31c24;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.btn-cadastro:hover {
+    background-color: #b8141a;
+}
+
+.cart-icon img {
+    height: 35px;
+    cursor: pointer;
+}
+
+.feira {
+    width: 100%;
+    height: 450px;
+    background-image: url("imagens/feira.png");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 60px;
+}
+
+.banner-content {
+    max-width: 550px;
+    color: white;
+}
+
+.banner-content h1 {
+    font-size: 42px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.banner-content p {
+    font-size: 24px;
+    line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    .container-cards {
+        flex-direction: column;
+    }
+    .feira {
+        padding-left: 20px;
+        background-image: url("imagens/feira.png");
+    }
 }
