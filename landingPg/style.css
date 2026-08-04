@@ -48,9 +48,25 @@ body {
     background-color: #b8141a;
 }
 
-.cart-icon img {
-    height: 35px;
+.icon {
+    display: flex;
+    gap: 15px;
+}
+
+.icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.botao{
+    border-radius: 6px;
+    border: none;
     cursor: pointer;
+    background-color: #f5f5f5;
+}
+
+.botao:hover{
+    background-color: #d8d8d8;
 }
 
 .feira {
@@ -88,11 +104,76 @@ body {
         gap: 15px;
         text-align: center;
     }
+
     .container-cards {
         flex-direction: column;
     }
+
     .feira {
         padding-left: 20px;
         background-image: url("imagens/feira.png");
     }
+}
+
+.grid-beneficios {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .grid-beneficios {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .titulo-banner {
+        font-size: 3rem;
+    }
+}
+
+.card-beneficio {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 1px 3px 0 #2e2e2e;
+    border: 1px solid #F3F4F6;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.card-icone {
+    font-size: 2.25rem;
+    line-height: 1;
+    width: 50;
+    height: 60;
+}
+
+.card-desconto {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #F59E0B;
+}
+
+.card-titulo {
+    font-weight: 700;
+    color: #111827;
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+}
+
+.card-texto {
+    color: #4B5563;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.card-imagem-png {
+    width: 80px;        
+    height: 80px;       
+    object-fit: contain; 
+    flex-shrink: 0;      
 }
