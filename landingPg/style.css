@@ -63,6 +63,7 @@ body {
     border: none;
     cursor: pointer;
     background-color: #f5f5f5;
+    padding: 5px;
 }
 
 .botao:hover{
@@ -184,9 +185,9 @@ body {
     padding: 40px 20px;
     font-family: Arial, sans-serif;
     font-size: 14px;
-  }
+}
   
-  .rodape-container {
+.rodape-container {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
@@ -194,54 +195,54 @@ body {
     align-items: flex-start;
     flex-wrap: wrap;
     gap: 30px;
-  }
+}
   
-  .rodape-coluna {
+.rodape-coluna {
     flex: 1;
     min-width: 250px;
-  }
+}
   
-  .rodape-coluna h3 {
+.rodape-coluna h3 {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 15px;
     color: #ffffff;
-  }
+}
   
-  .rodape-coluna ul {
+.rodape-coluna ul {
     list-style: none;
     padding: 0;
     margin: 0;
-  }
+}
   
-  .rodape-coluna ul li {
+.rodape-coluna ul li {
     margin-bottom: 8px;
     color: #d1cbe5; 
-  }
+}
   
-  .rodape-coluna ul li strong {
+.rodape-coluna ul li strong {
     color: #ffffff;
-  }
+}
   
-  .rodape-coluna.central {
+.rodape-coluna.central {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-  }
+}
   
-  .logo-rodape {
+.logo-rodape {
     max-width: 150px;
     height: auto;
     margin-bottom: 20px;
-  }
+}
   
-  .icones-sociais {
+.icones-sociais {
     display: flex;
     gap: 15px;
-  }
+}
   
-  .icones-sociais a {
+.icones-sociais a {
     display: inline-block;
     width: 35px;
     height: 35px;
@@ -249,23 +250,23 @@ body {
     border-radius: 50%;
     text-indent: -9999px; 
     position: relative;
-  }
+}
   
-  .icones-sociais a.icone-fb::before { content: "f"; position: absolute; top: 8px; left: 14px; color: #0b022b; font-weight: bold; text-indent: 0; }
-  .icones-sociais a.icone-ig::before { content: "📷"; position: absolute; top: 8px; left: 9px; color: #0b022b; text-indent: 0; font-size: 14px; }
+.icones-sociais a.icone-fb::before { content: "f"; position: absolute; top: 8px; left: 14px; color: #0b022b; font-weight: bold; text-indent: 0; }
+.icones-sociais a.icone-ig::before { content: "📷"; position: absolute; top: 8px; left: 9px; color: #0b022b; text-indent: 0; font-size: 14px; }
 
-  .rodape-coluna.info p {
+.rodape-coluna.info p {
     margin: 0 0 8px 0;
     color: #d1cbe5;
-  }
+}
   
-  .rodape-coluna .direitos-autorais {
+.rodape-coluna .direitos-autorais {
     margin-top: 30px;
     font-size: 12px;
     color: #8c82b0;
-  }
+}
 
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
     .rodape-container {
       flex-direction: column;
       align-items: center;
@@ -274,5 +275,211 @@ body {
     .rodape-coluna.central {
       order: -1; 
     }
-  }
-  
+}
+
+/* ============================================================
+   ESTILOS ADICIONAIS: CATÁLOGO & TELA DE CADASTRO
+   ============================================================ */
+
+.categories-bar {
+    background-color: #e31c24;
+    padding: 12px 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.categories-scroll {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: auto;
+}
+
+.categories-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.category-btn {
+    flex: 1 1 auto;
+    min-width: 110px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.category-btn:hover,
+.category-btn.active {
+    background-color: #ffffff;
+    color: #e31c24;
+    border-color: #ffffff;
+}
+
+.category-btn.promo-btn {
+    background-color: #ffcc00;
+    color: #8b0000;
+    border-color: #ffcc00;
+}
+
+.container-catalogo {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+    min-height: 50vh;
+}
+
+.titulo-secao {
+    font-size: 28px;
+    color: #e31c24;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.promo-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #e31c24;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.image-container img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.product-title {
+    font-size: 16px;
+    color: #333;
+}
+
+.product-category {
+    font-size: 12px;
+    color: #e31c24;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.product-barcode {
+    font-size: 12px;
+    color: #777;
+}
+
+.product-price {
+    font-size: 20px;
+    color: #2e7d32;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.container-auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+    min-height: 60vh;
+    background-color: #f9f9f9;
+}
+
+.card-auth {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+}
+
+.card-auth h2 {
+    color: #e31c24;
+    margin-bottom: 10px;
+}
+
+.card-auth p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.form-auth {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+}
+
+.campo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.campo-form label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.campo-form input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.btn-submit {
+    background-color: #e31c24;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #b8141a;
+}

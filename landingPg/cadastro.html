@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muffatão</title>
+    <title>Muffatão - Conectar Conta</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="imagens/image.png" type="imagens/image.png">
     <link rel="shortcut icon" href="imagens/logo-muffatao.png" type="image/x-icon">
@@ -13,7 +13,7 @@
 <body>
     <header class="header">
         <div class="header-logo-container">
-            <img src="imagens/muffatao.png" alt="Muffatão O Super do Coração" class="logo-principal">
+            <img src="imagens/muffatao.png" alt="Muffatão O Super do Coração" class="logo-principal" onclick="window.location.href='index.html'" style="cursor: pointer;">
             <img src="imagens/selo-1964.png" alt="Selo Grupo Muffatão 1964" class="logo-selo">
         </div>
         <button class="btn-cadastro" onclick="window.location.href='cadastro.html'">Quero me cadastrar no Clube do Coração</button>
@@ -23,52 +23,34 @@
         </div>
     </header>
 
-    <section class="banner feira">
-        <div class="banner-content">
-            <h1>Faça suas compras no MUFFATÃO!</h1>
-            <p>Preços baixos, variedade e qualidade perto de você.</p>
+    <main class="container-auth">
+        <div class="card-auth">
+            <h2>Clube do Coração</h2>
+            <p>Acesse sua conta ou cadastre-se para aproveitar ofertas exclusivas.</p>
+
+            <form id="form-cadastro" class="form-auth">
+                <div class="campo-form">
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" id="nome" placeholder="Digite seu nome" required>
+                </div>
+
+                <div class="campo-form">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" placeholder="seuemail@exemplo.com" required>
+                </div>
+
+                <div class="campo-form">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" placeholder="Sua senha" required>
+                </div>
+
+                <button type="submit" class="btn-submit">ENTRAR / CADASTRAR</button>
+            </form>
         </div>
-    </section>
-
-    <main class="grid-beneficios">
-
-        <div class="card-beneficio">
-            <img src="imagens/cesta.png" alt="cesta de compras" class="card-imagem-png">
-
-            <div>
-                <h3 class="card-titulo">Produtos frescos</h3>
-                <p class="card-texto">
-                    Alimentos frescos direto do produtor para sua mesa. Hortifruti, açougue e Padaria com qualidade
-                    garantida.
-                </p>
-            </div>
-        </div>
-
-        <div class="card-beneficio">
-            <img src="imagens/desconto.png" alt="cesta de compras" class="card-imagem-png">
-            <div>
-                <h3 class="card-titulo">Ofertas exclusivas</h3>
-                <p class="card-texto">
-                    Encontre preços imperdíveis e descontos especiais todos os dias em centenas de itens essenciais.
-                </p>
-            </div>
-        </div>
-
-        <div class="card-beneficio">
-            <img src="imagens/mapa.png" alt="cesta de compras" class="card-imagem-png">
-            <div>
-                <h3 class="card-titulo">Comodidade pra você</h3>
-                <p class="card-texto">
-                    Diversas lojas próximas e opções de compras online com entrega rápida e segura.
-                </p>
-            </div>
-        </div>
-
     </main>
 
     <footer class="rodape-muffatao">
         <div class="rodape-container">
-          
           <div class="rodape-coluna telefones">
             <h3>Telefones</h3>
             <ul>
@@ -96,10 +78,8 @@
             <p>Domingo das 8h às 20h</p>
             <p class="direitos-autorais">&copy; Copyright Muffatão.</p>
           </div>
-      
         </div>
     </footer>
-
 </body>
 
 </html>
