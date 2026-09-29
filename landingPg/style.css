@@ -58,16 +58,29 @@ body {
     height: 40px;
 }
 
-.botao{
-    border-radius: 6px;
+.botao {
+    height: 40px;
+    border-radius: 8px;
     border: none;
     cursor: pointer;
-    background-color: #f5f5f5;
-    padding: 5px;
+    background-color: #e31c24;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    border: 2px solid #e31c24;
+    box-sizing: border-box;
+    padding: 0 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.botao:hover{
-    background-color: #d8d8d8;
+.botao:hover {
+    background-color: #b8141a;
+    border-color: #b8141a;
 }
 
 .feira {

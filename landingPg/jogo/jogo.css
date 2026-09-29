@@ -1,0 +1,211 @@
+:root {
+    --cor-fundo: #0b1431;
+    --azul-principal: #0020c2;
+    --azul-cartao: #3b30b5;
+    --vermelho-destaque: #b7161b;
+    --texto-claro: #ffffff;
+    --fundo-regras: #4d44b5;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--texto-claro);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.menu-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 30px;
+}
+
+.botoes-dificuldade {
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    background-color: var(--azul-cartao);
+    color: var(--texto-claro);
+    border: 2px solid transparent;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: var(--vermelho-destaque);
+    transform: translateY(-2px);
+}
+
+.btn.ativo {
+    background-color: var(--vermelho-destaque);
+}
+
+.btn-voltar {
+    background-color: var(--azul-principal);
+}
+
+.container-principal {
+    display: flex;
+    gap: 40px;
+    width: 100%;
+    max-width: 1000px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.area-jogo {
+    background-color: var(--azul-principal);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabuleiro-puzzle {
+    display: grid;
+    gap: 5px;
+    background-color: #000c40;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.peca-puzzle {
+    background-color: var(--cor-fundo);
+    color: var(--texto-claro);
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    border: 2px solid #14213d;
+    border-radius: 4px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.peca-puzzle:not(.vazia):hover {
+    background-color: #142850;
+    border-color: var(--vermelho-destaque);
+}
+
+.peca-puzzle.vazia {
+    background-color: transparent;
+    border: none;
+    cursor: default;
+}
+
+.painel-lateral {
+    background-color: var(--fundo-regras);
+    padding: 25px;
+    border-radius: 8px;
+    min-width: 280px;
+    max-width: 350px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.painel-lateral h2 {
+    margin-bottom: 15px;
+    font-size: 22px;
+    border-bottom: 2px solid var(--vermelho-destaque);
+    padding-bottom: 5px;
+}
+
+.painel-lateral ul {
+    list-style-type: none;
+}
+
+.painel-lateral li {
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.container-cronometro {
+    margin-top: 25px;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.texto-cronometro {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #ccc;
+}
+
+.exibicao-cronometro {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--texto-claro);
+    margin-top: 5px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.conteudo-modal {
+    background-color: var(--azul-cartao);
+    border: 3px solid var(--vermelho-destaque);
+    padding: 40px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+}
+
+.conteudo-modal h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.conteudo-modal p {
+    font-size: 18px;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .menu-topo {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .container-principal {
+        flex-direction: column;
+        align-items: center;
+    }
+}

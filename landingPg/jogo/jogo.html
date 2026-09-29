@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide Puzzle - Jogo</title>
+    <link rel="stylesheet" href="jogo.css">
+</head>
+<body>
+
+    <div class="menu-topo">
+        <div class="botoes-dificuldade">
+            <button class="btn ativo" onclick="mudarDificuldade(3, this)">Fácil</button>
+            <button class="btn" onclick="mudarDificuldade(4, this)">Médio</button>
+        </div>
+        <button class="btn btn-voltar" onclick="window.location.href='../index.html'">Voltar</button>
+    </div>
+
+    <div class="container-principal">
+        
+        <div class="area-jogo">
+            <div id="tabuleiroPuzzle" class="tabuleiro-puzzle"></div>
+        </div>
+
+        <div class="painel-lateral">
+            <h2>Regras:</h2>
+            <ul>
+                <li>• Clique nas peças vizinhas ao espaço vazio para movê-las.</li>
+                <li>• Coloque os números em ordem crescente (do 1 no topo esquerdo ao fim).</li>
+                <li>• O quadrado vazio deve terminar no último canto inferior direito.</li>
+                <li>• <strong>Bônus:</strong> Complete o desafio em menos de 1 minuto e 20 segundos para ganhar um desconto!</li>
+            </ul>
+
+            <div class="container-cronometro">
+                <div class="texto-cronometro">Tempo Decorrido</div>
+                <div id="exibicaoCronometro" class="exibicao-cronometro">00:00</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalResultado" class="modal">
+        <div class="conteudo-modal">
+            <h3 id="tituloModal">Fim de Jogo!</h3>
+            <p id="mensagemModal">Mensagem de resultado aqui.</p>
+            <button class="btn" onclick="fecharModal()">Jogar Novamente</button>
+        </div>
+    </div>
+
+    <script src="jogo.js"></script>
+</body>
+</html>
