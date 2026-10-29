@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, onSnapshot, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// Configuração oficial do seu Firebase (AppMuffatao)
 const firebaseConfig = {
   apiKey: "AIzaSyAywK-WTOrn0Xw0MV5Jr9zr1ZKUvSBcCW0",
   authDomain: "appmuffatao.firebaseapp.com",
@@ -11,26 +10,20 @@ const firebaseConfig = {
   appId: "1:504077340677:web:ac39802ad01a88cc9b8c6c"
 };
 
-// Inicialização
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Variáveis de controle
 let todosProdutos = [];
 let categoriaAtiva = 'TODOS';
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Captura dos elementos usando as classes do SEU CSS
   const productGrid = document.querySelector('.product-grid') || document.getElementById('product-grid');
   const categoryBtns = document.querySelectorAll('.category-btn');
   const formAuth = document.querySelector('.form-auth') || document.getElementById('form-cadastro');
 
-  // ============================================================
-  // 1. LÓGICA DA VITRINE / CATÁLOGO DE PRODUTOS
-  // ============================================================
   if (productGrid) {
-    // Escuta a coleção "produtos" em tempo real no Firebase
+
     onSnapshot(collection(db, "produtos"), (snapshot) => {
       todosProdutos = [];
 
@@ -41,14 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
       renderizarProdutos();
     });
 
-    // Clique nos botões de categoria da barra (.category-btn)
     if (categoryBtns.length > 0) {
       categoryBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
           categoryBtns.forEach((b) => b.classList.remove('active'));
           btn.classList.add('active');
 
-          // Pega o nome da categoria selecionada
           categoriaAtiva = (btn.getAttribute('data-categoria') || btn.textContent).trim().toUpperCase();
           renderizarProdutos();
         });
@@ -56,12 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Função para desenhar os cards usando a estrutura do SEU CSS
   function renderizarProdutos() {
     if (!productGrid) return;
     productGrid.innerHTML = '';
 
-    // Filtragem por categoria ou promoção
     let produtosFiltrados = todosProdutos;
 
     if (categoriaAtiva === 'OFERTAS' || categoriaAtiva === 'PROMOÇÕES' || categoriaAtiva === 'PROMO') {
@@ -72,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
       );
     }
 
-    // Caso não haja produtos na categoria
     if (produtosFiltrados.length === 0) {
       productGrid.innerHTML = `
         <p style="grid-column: 1 / -1; text-align: center; color: #777; padding: 40px; font-size: 16px;">
@@ -82,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Renderiza cada produto com as suas classes CSS (.product-card, .promo-badge, etc.)
     produtosFiltrados.forEach((prod) => {
       const card = document.createElement('div');
       card.className = 'product-card';
@@ -107,14 +94,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ============================================================
-  // 2. LÓGICA DA TELA DE CADASTRO (.card-auth / .form-auth)
-  // ============================================================
   if (formAuth) {
     formAuth.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // Busca os campos pelos IDs flexíveis
       const codigoInput = document.getElementById('codigo') || document.getElementById('input-codigo');
       const nomeInput = document.getElementById('nome') || document.getElementById('input-nome');
       const precoInput = document.getElementById('preco') || document.getElementById('input-preco');
@@ -133,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       try {
-        // Salva na coleção "produtos" no Firebase
+
         await setDoc(doc(db, "produtos", codigo), {
           codigo,
           nome,
