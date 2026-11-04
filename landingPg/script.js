@@ -1,137 +1,103 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, onSnapshot, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+// Importa os módulos necessários do SDK do Firebase do CDN oficial
+import { initializeApp } from "https://gstatic.com";
+import { 
+    getAuth, 
+    signInWithPopup, 
+    GoogleAuthProvider, 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword 
+} from "https://gstatic.com";
 
+// TODO: Substitua o objeto abaixo com as credenciais do seu projeto criado no console do Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyAywK-WTOrn0Xw0MV5Jr9zr1ZKUvSBcCW0",
-  authDomain: "appmuffatao.firebaseapp.com",
-  projectId: "appmuffatao",
-  storageBucket: "appmuffatao.firebasestorage.app",
-  messagingSenderId: "504077340677",
-  appId: "1:504077340677:web:ac39802ad01a88cc9b8c6c"
+    apiKey: "SUA_API_KEY",
+    authDomain: "SEU_AUTH_DOMAIN",
+    projectId: "SEU_PROJECT_ID",
+    storageBucket: "SEU_STORAGE_BUCKET",
+    messagingSenderId: "SEU_MESSAGING_SENDER_ID",
+    appId: "SEU_APP_ID"
 };
 
+// Inicializa o Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
 
-let todosProdutos = [];
-let categoriaAtiva = 'TODOS';
+// Elementos da Interface
+const formCadastro = document.getElementById('form-cadastro');
+const btnGoogle = document.getElementById('btn-google');
 
-document.addEventListener('DOMContentLoaded', () => {
+// Função utilitária para salvar a sessão e voltar para a home
+function finalizarAutenticacao(user) {
+    const dadosUsuario = {
+        nome: user.displayName || 'Usuário',
+        email: user.email,
+        foto: user.photoURL || 'imagens/avatar-padrao.png' // Fallback caso não tenha foto
+    };
+    
+    // Armazena no navegador temporariamente para uso rápido na index.html
+    localStorage.setItem('usuarioLogado', JSON.stringify(dadosUsuario));
+    
+    // Redireciona para a página inicial
+    window.location.href = 'index.html';
+}
 
-  const productGrid = document.querySelector('.product-grid') || document.getElementById('product-grid');
-  const categoryBtns = document.querySelectorAll('.category-btn');
-  const formAuth = document.querySelector('.form-auth') || document.getElementById('form-cadastro');
-
-  if (productGrid) {
-
-    onSnapshot(collection(db, "produtos"), (snapshot) => {
-      todosProdutos = [];
-
-      snapshot.forEach((docSnap) => {
-        todosProdutos.push(docSnap.data());
-      });
-
-      renderizarProdutos();
-    });
-
-    if (categoryBtns.length > 0) {
-      categoryBtns.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          categoryBtns.forEach((b) => b.classList.remove('active'));
-          btn.classList.add('active');
-
-          categoriaAtiva = (btn.getAttribute('data-categoria') || btn.textContent).trim().toUpperCase();
-          renderizarProdutos();
-        });
-      });
+// 1. LOGIN COM O GOOGLE
+btnGoogle.addEventListener('click', async () => {
+    try {
+        const resultado = await signInWithPopup(auth, googleProvider);
+        finalizarAutenticacao(resultado.user);
+    } catch (erro) {
+        console.error("Erro no login com Google:", erro);
+        alert("Falha ao conectar com o Google. Tente novamente.");
     }
-  }
-
-  function renderizarProdutos() {
-    if (!productGrid) return;
-    productGrid.innerHTML = '';
-
-    let produtosFiltrados = todosProdutos;
-
-    if (categoriaAtiva === 'OFERTAS' || categoriaAtiva === 'PROMOÇÕES' || categoriaAtiva === 'PROMO') {
-      produtosFiltrados = todosProdutos.filter(p => p.promocao === true);
-    } else if (categoriaAtiva !== 'TODOS' && categoriaAtiva !== 'TODAS') {
-      produtosFiltrados = todosProdutos.filter(p => 
-        p.categoria && p.categoria.trim().toUpperCase() === categoriaAtiva
-      );
-    }
-
-    if (produtosFiltrados.length === 0) {
-      productGrid.innerHTML = `
-        <p style="grid-column: 1 / -1; text-align: center; color: #777; padding: 40px; font-size: 16px;">
-          Nenhum produto encontrado nesta categoria.
-        </p>
-      `;
-      return;
-    }
-
-    produtosFiltrados.forEach((prod) => {
-      const card = document.createElement('div');
-      card.className = 'product-card';
-
-      const precoFormatado = Number(prod.preco || 0).toFixed(2).replace('.', ',');
-      const imagemUrl = prod.imagem || 'https://via.placeholder.com/300x180?text=Sem+Foto';
-
-      card.innerHTML = `
-        ${prod.promocao ? '<span class="promo-badge">OFERTA 🔥</span>' : ''}
-        <div class="image-container">
-          <img src="${imagemUrl}" alt="${prod.nome}">
-        </div>
-        <div class="product-info">
-          <span class="product-category">${prod.categoria || 'Geral'}</span>
-          <h3 class="product-title">${prod.nome}</h3>
-          <span class="product-barcode">EAN: ${prod.codigo || 'N/A'}</span>
-          <div class="product-price">R$ ${precoFormatado}</div>
-        </div>
-      `;
-
-      productGrid.appendChild(card);
-    });
-  }
-
-  if (formAuth) {
-    formAuth.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const codigoInput = document.getElementById('codigo') || document.getElementById('input-codigo');
-      const nomeInput = document.getElementById('nome') || document.getElementById('input-nome');
-      const precoInput = document.getElementById('preco') || document.getElementById('input-preco');
-      const categoriaSelect = document.getElementById('categoria') || document.getElementById('input-categoria');
-      const imagemInput = document.getElementById('imagem') || document.getElementById('input-imagem');
-
-      const codigo = codigoInput ? codigoInput.value.trim() : '';
-      const nome = nomeInput ? nomeInput.value.trim() : '';
-      const preco = precoInput ? parseFloat(precoInput.value) : 0;
-      const categoria = categoriaSelect ? categoriaSelect.value : 'Mercearia';
-      const imagem = imagemInput ? imagemInput.value.trim() : '';
-
-      if (!codigo || !nome || isNaN(preco)) {
-        alert("Por favor, preencha o código, o nome e o preço corretamente.");
-        return;
-      }
-
-      try {
-
-        await setDoc(doc(db, "produtos", codigo), {
-          codigo,
-          nome,
-          preco,
-          categoria,
-          promocao: false,
-          imagem: imagem || "https://via.placeholder.com/300x180?text=Produto",
-          cadastradoEm: new Date().toISOString()
-        });
-
-        alert("🚀 Produto cadastrado com sucesso no Firebase!");
-        formAuth.reset();
-      } catch (error) {
-        alert("Erro ao salvar produto: " + error.message);
-      }
-    });
-  }
 });
+
+// 2. CADASTRO / LOGIN TRADICIONAL (E-mail e Senha)
+formCadastro.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const senha = document.getElementById('senha').value;
+
+    try {
+        // Tenta fazer login primeiro, se falhar, tenta criar a conta
+        try {
+            const resultadoLogin = await signInWithEmailAndPassword(auth, email, senha);
+            finalizarAutenticacao(resultadoLogin.user);
+        } catch (erroLogin) {
+            // Código de erro comum quando o usuário não existe
+            if (erroLogin.code === 'auth/user-not-found' || erroLogin.code === 'auth/invalid-credential') {
+                const resultadoCadastro = await createUserWithEmailAndPassword(auth, email, senha);
+                finalizarAutenticacao(resultadoCadastro.user);
+            } else {
+                throw erroLogin;
+            }
+        }
+    } catch (erro) {
+        console.error("Erro na autenticação:", erro);
+        alert("Erro ao processar os dados. Verifique a senha.");
+    }
+});
+    document.addEventListener('DOMContentLoaded', () => {
+        const containerUsuario = document.getElementById('container-usuario');
+        const usuarioValido = localStorage.getItem('usuarioLogado');
+
+        if (usuarioValido) {
+            const usuario = JSON.parse(usuarioValido);
+            
+            // Substitui o botão "Entrar" pela foto do perfil estilizada no canto superior direito
+            containerUsuario.innerHTML = `
+                <div class="perfil-header" style="display: flex; align-items: center; gap: 10px; cursor: pointer;" onclick="toggleMenuUsuario()">
+                    <img src="${usuario.foto}" alt="Foto de ${usuario.nome}" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #ef3e36; object-fit: cover;">
+                </div>
+            `;
+        }
+    });
+
+    // Função opcional caso queira dar a opção do usuário deslogar ao clicar na foto
+    function toggleMenuUsuario() {
+        if(confirm("Deseja sair da sua conta?")) {
+            localStorage.removeItem('usuarioLogado');
+            window.location.reload();
+        }
+    }

@@ -16,10 +16,9 @@
             <img src="imagens/muffatao.png" alt="Muffatão O Super do Coração" class="logo-principal" onclick="window.location.href='index.html'" style="cursor: pointer;">
             <img src="imagens/selo-1964.png" alt="Selo Grupo Muffatão 1964" class="logo-selo">
         </div>
-        <button class="btn-cadastro" onclick="window.location.href='cadastro.html'">Quero me cadastrar no Clube do Coração</button>
+
         <div class="icon">
-            <button class="botao" onclick="window.location.href='cadastro.html'"> Login</button>
-            <button class="botao" onclick="window.location.href='catalogo.html'"> Loja</button>
+            <button class="botao" onclick="window.location.href='index.html'"> Voltar </button>
         </div>
     </header>
 
@@ -31,7 +30,7 @@
             <form id="form-cadastro" class="form-auth">
                 <div class="campo-form">
                     <label for="nome">Nome Completo:</label>
-                    <input type="text" id="nome" placeholder="Digite seu nome" required>
+                    <input type="text" id="nome" placeholder="Digite seu nome">
                 </div>
 
                 <div class="campo-form">
@@ -46,6 +45,12 @@
 
                 <button type="submit" class="btn-submit">ENTRAR / CADASTRAR</button>
             </form>
+
+            <div class="divisor-auth" style="margin: 20px 0; text-align: center; color: #666;">ou</div>
+            <button id="btn-google" class="btn-google" style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 10px; border: 1px solid #ccc; background: white; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                <img src="https://gstatic.com" alt="Google Logo" style="width: 20px;">
+                Entrar com o Google
+            </button>
         </div>
     </main>
 
