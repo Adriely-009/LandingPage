@@ -58,7 +58,7 @@ body {
     height: 40px;
 }
 
-.botao {
+.botao, .botao-login-antigo {
     height: 40px;
     border-radius: 8px;
     border: none;
@@ -78,7 +78,7 @@ body {
     letter-spacing: 0.5px;
 }
 
-.botao:hover {
+.botao:hover, .botao-login-antigo:hover {
     background-color: #b8141a;
     border-color: #b8141a;
 }
