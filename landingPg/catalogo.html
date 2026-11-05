@@ -1,70 +1,74 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muffatão - Catálogo de Produtos</title>
+    <title>Muffatão</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="imagens/image.png" type="imagens/image.png">
-    <link rel="shortcut icon" href="imagens/logo-muffatao.png" type="image/x-icon">
+    <link rel="icon" type="image/png" href="imagens/logo-muffatao.png">
 </head>
 
 <body>
-    <header class="header">
-        <div class="header-logo-container">
-            <img src="imagens/muffatao.png" alt="Muffatão O Super do Coração" class="logo-principal" onclick="window.location.href='index.html'" style="cursor: pointer;">
-            <img src="imagens/selo-1964.png" alt="Selo Grupo Muffatão 1964" class="logo-selo">
-        </div>
+  <header class="header">
+    <div class="header-logo-container">
+      <img src="imagens/muffatao.png" alt="Muffatão O Super do Coração" class="logo-principal"
+        onclick="window.location.href='index.html'" style="cursor: pointer;">
+      <img src="imagens/selo-1964.png" alt="Selo Grupo Muffatão 1964" class="logo-selo">
+    </div>
 
-        <div class="icon">
-            <button class="botao" onclick="window.location.href='index.html'"> Voltar </button>
-            <button class="botao" onclick="window.location.href='jogo/jogo.html'"> Jogar </button>
-        </div>
-    </header>
+    <div class="icon">
+      <div id="container-usuario">
+        <button class="botao-login-antigo" onclick="window.location.href='cadastro.html'">Login</button>
+      </div>
+      <button class="botao" onclick="window.location.href='index.html'"> Voltar </button>
+      <button class="botao" onclick="window.location.href='jogo/jogo.html'"> Jogar </button>
+    </div>
+  </header>
 
-    <nav class="categories-bar">
-        <div id="categories-container" class="categories-scroll">
-        </div>
-    </nav>
+  <!-- Menu de Categorias -->
+  <nav class="categories-nav">
+    <a href="hortifruti.html" class="category-item active">Hortifruti</a>
+    <a href="acougue.html" class="category-item">Açougue</a>
+    <a href="padaria.html" class="category-item">Padaria</a>
+    <a href="limpeza.html" class="category-item">Limpeza</a>
+    <a href="refrigerados.html" class="category-item">Refrigerados</a>
+    <a href="mercearia.html" class="category-item">Mercearia</a>
+    <a href="bebidas.html" class="category-item">Bebidas</a>
+  </nav>
 
-    <main class="container-catalogo">
-        <h2 class="titulo-secao">Nosso Catálogo</h2>
-        <div id="product-grid" class="product-grid">
-        </div>
-    </main>
+  <!-- Grade de Produtos -->
+  <main class="products-container">
+    <!-- Linha 1 -->
+    <div class="product-card" onclick="adicionarAoCarrinho('Laranja Pera', 5.29)">
+      <img src="produto1.png" alt="Laranja Pera">
+    </div>
+    <div class="product-card" onclick="adicionarAoCarrinho('Cenoura Extra', 5.99)">
+      <img src="produto2.png" alt="Cenoura Extra">
+    </div>
+    <div class="product-card" onclick="adicionarAoCarrinho('Maçã Gala', 12.99)">
+      <img src="produto3.png" alt="Maçã Gala">
+    </div>
+    <div class="product-card" onclick="adicionarAoCarrinho('Banana Prata', 10.99)">
+      <img src="produto4.png" alt="Banana Prata">
+    </div>
 
-    <footer class="rodape-muffatao">
-        <div class="rodape-container">
-          <div class="rodape-coluna telefones">
-            <h3>Telefones</h3>
-            <ul>
-              <li><strong>Matriz:</strong> (45) 3112-2121</li>
-              <li><strong>Neva:</strong> (45) 3333-7171</li>
-              <li><strong>West Side:</strong> (45) 3333-5151</li>
-              <li><strong>Cancelli:</strong> (45) 3333-3131</li>
-              <li><strong>Santa Cruz:</strong> (45) 3112-6161</li>
-            </ul>
-          </div>
+    <!-- Linha 2 -->
+    <div class="product-card" onclick="adicionarAoCarrinho('Batata Doce', 3.99)">
+      <img src="produto5.png" alt="Batata Doce">
+    </div>
+    <div class="product-card" onclick="adicionarAoCarrinho('Manga Tommy', 10.98)">
+      <img src="produto6.png" alt="Manga Tommy">
+    </div>
+    <div class="product-card" onclick="adicionarAoCarrinho('Limão Taiti', 3.69)">
+      <img src="produto7.png" alt="Limão Taiti">
+    </div>
+    <div class="product-card" onclick="adicionarAoCarrinho('Tomate Longa Vida', 11.98)">
+      <img src="produto8.png" alt="Tomate Longa Vida">
+    </div>
+  </main>
 
-          <div class="rodape-coluna central">
-            <div class="caixa-logo">
-              <img src="imagens/muffatao.png" alt="Muffatão O Super do Coração" class="logo-rodape">
-            </div>
-            <div class="icones-sociais">
-            </div>
-          </div>
-      
-          <div class="rodape-coluna info">
-            <h3>Horário de Atendimento</h3>
-            <p>Seg. à Sáb. das 8h às 21h</p>
-            <p>Domingo das 8h às 20h</p>
-            <p class="direitos-autorais">&copy; Copyright Muffatão.</p>
-          </div>
-        </div>
-    </footer>
-
-    <script type="module" src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
