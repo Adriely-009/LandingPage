@@ -492,3 +492,19 @@ body {
 .btn-submit:hover {
     background-color: #b8141a;
 }
+
+.btn-google {
+    background-color: #e2e9ff;
+    color: black;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-google:hover {
+    background-color: #cad6ff;
+}
