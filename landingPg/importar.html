@@ -1,0 +1,56 @@
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+    apiKey: "AIzaSyAywK-WTOrn0Xw0MV5Jr9zr1ZKUvSBcCW0",
+    authDomain: "appmuffatao.firebaseapp.com",
+    projectId: "appmuffatao",
+    storageBucket: "appmuffatao.firebasestorage.app",
+    messagingSenderId: "504077340677",
+    appId: "1:504077340677:web:ac39802ad01a88cc9b8c6c"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const botao = document.createElement("button");
+    botao.textContent = "Enviar Produtos do JSON";
+    botao.style.padding = "15px 30px";
+    botao.style.fontSize = "18px";
+    botao.style.cursor = "pointer";
+    document.body.appendChild(botao);
+
+    const status = document.createElement("p");
+    document.body.appendChild(status);
+
+    botao.onclick = async () => {
+    botao.disabled = true;
+    status.textContent = "Lendo arquivo JSON...";
+
+    try {
+        const resposta = await fetch("./produtos.json");
+        const lista = await resposta.json();
+
+        for (let i = 0; i < lista.length; i++) {
+        // Transforma o nome em um ID fixo (ex: "Pão Francês (Kg)" vira "pao-frances-kg")
+        const idUnico = lista[i].nome
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/(^-|-$)/g, "");
+
+        // Se o ID já existir no Firebase, ele não duplica (apenas atualiza)
+        await setDoc(doc(db, "produtos", idUnico), lista[i]);
+        status.textContent = "Processado " + (i + 1) + " de " + lista.length;
+        }
+
+        status.textContent = "Importação concluída sem duplicados!";
+    } catch (erro) {
+        status.textContent = "Erro: " + erro.message;
+    }
+
+    botao.disabled = false;
+    };
+
+</script>
