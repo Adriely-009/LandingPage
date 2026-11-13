@@ -32,7 +32,7 @@
         const lista = await resposta.json();
 
         for (let i = 0; i < lista.length; i++) {
-        // Transforma o nome em um ID fixo (ex: "Pão Francês (Kg)" vira "pao-frances-kg")
+
         const idUnico = lista[i].nome
             .toLowerCase()
             .normalize("NFD")
@@ -40,7 +40,7 @@
             .replace(/[^a-z0-9]+/g, "-")
             .replace(/(^-|-$)/g, "");
 
-        // Se o ID já existir no Firebase, ele não duplica (apenas atualiza)
+
         await setDoc(doc(db, "produtos", idUnico), lista[i]);
         status.textContent = "Processado " + (i + 1) + " de " + lista.length;
         }
