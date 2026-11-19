@@ -33,12 +33,27 @@ onSnapshot(collection(db, "produtos"), (snapshot) => {
 function renderizarCategorias() {
   if (!categoriesContainer) return;
 
-  const categorias = ["Todas", ...new Set(todosProdutos.map(p => p.categoria).filter(Boolean))];
+  const categoriasBanco = [
+    ...new Set(
+      todosProdutos
+        .map((p) => p.categoria)
+        .filter((cat) => Boolean(cat) && cat.trim().toLowerCase() !== "promoção" && cat.trim().toLowerCase() !== "promocao")
+    )
+  ];
+
+  const categorias = ["Todas", "Promoção", ...categoriasBanco];
   categoriesContainer.innerHTML = "";
 
   categorias.forEach((cat) => {
     const btn = document.createElement("button");
-    btn.className = "category-btn" + (cat === categoriaAtual ? " active" : "");
+    const isPromo = cat === "Promoção";
+    const isActive = cat === categoriaAtual;
+
+    btn.className =
+      "category-btn" +
+      (isPromo ? " promo-btn" : "") +
+      (isActive ? " active" : "");
+
     btn.textContent = cat;
     btn.onclick = () => {
       categoriaAtual = cat;
@@ -53,12 +68,19 @@ function renderizarProdutos() {
   if (!productGrid) return;
   productGrid.innerHTML = "";
 
-  const filtrados = categoriaAtual === "Todas"
-    ? todosProdutos
-    : todosProdutos.filter(p => p.categoria === categoriaAtual);
+  let filtrados = todosProdutos;
+
+  if (categoriaAtual === "Promoção") {
+    filtrados = todosProdutos.filter((p) => Boolean(p.promocao) === true);
+  } else if (categoriaAtual !== "Todas") {
+    filtrados = todosProdutos.filter((p) => p.categoria === categoriaAtual);
+  }
 
   if (filtrados.length === 0) {
-    productGrid.innerHTML = "<p>Nenhum produto cadastrado nesta categoria.</p>";
+    productGrid.innerHTML =
+      categoriaAtual === "Promoção"
+        ? "<p>Nenhum produto em promoção no momento.</p>"
+        : "<p>Nenhum produto cadastrado nesta categoria.</p>";
     return;
   }
 
@@ -71,7 +93,7 @@ function renderizarProdutos() {
 
     const urlFoto = temImagemValida
       ? produto.imagem
-      :"https" + "://foodish-api" + ".com/images/dessert/dessert" + ((index % 36) + 1) + ".jpg";
+      : "https://www.foodish-api.com/images/dessert/dessert" + ((index % 36) + 1) + ".jpg";
     const precoFormatado = Number(produto.preco || 0).toFixed(2).replace(".", ",");
 
     card.innerHTML = `
@@ -87,4 +109,3 @@ function renderizarProdutos() {
     productGrid.appendChild(card);
   });
 }
-
