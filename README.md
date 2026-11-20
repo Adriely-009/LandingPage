@@ -10,4 +10,7 @@ Repositório dedicado ao desenvolvimento do Trabalho de Conclusão de Curso (TCC
  **Adriely C.**
  **Nicolas P.**
 
+ # Orientadora
+ **Rafaela Louise**
+
 *Projeto desenvolvido em: 2026*
