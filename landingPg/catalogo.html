@@ -25,10 +25,41 @@
         </div>
     </header>
 
-    <nav class="categories-bar">
-        <div id="categories-container" class="categories-scroll">
+    <div class="categories-bar">
+      <div class="categories-wrapper">
+        <!-- Botões de Categoria (preenchidos pelo catalogo.js) -->
+        <div id="categories-container" class="categories-scroll"></div>
+
+        <!-- Barra de Pesquisa + Botão de Filtros -->
+        <div class="search-filter-group">
+          <div class="search-box">
+            <input type="text" id="search-input" placeholder="Buscar produto ou código..." />
+          </div>
+
+          <div class="filter-dropdown-wrapper">
+            <button type="button" id="btn-filtros" class="filter-btn">⚙️ Filtros</button>
+
+            <div id="filter-menu" class="filter-menu escondido">
+              <label for="select-ordem">Ordenar por:</label>
+              <select id="select-ordem">
+                <option value="padrao">Padrão</option>
+                <option value="menor-preco">Menor Preço</option>
+                <option value="maior-preco">Maior Preço</option>
+                <option value="az">Nome (A - Z)</option>
+              </select>
+
+              <label class="checkbox-promo-filtro">
+                <input type="checkbox" id="check-apenas-promo" />
+                Mostrar apenas ofertas 🔥
+              </label>
+
+              <button type="button" id="btn-limpar-filtros" class="btn-limpar-filtros">Limpar filtros</button>
+            </div>
+          </div>
         </div>
-    </nav>
+      </div>
+    </div>
+
 
     <main class="container-catalogo">
         <h2 class="titulo-secao">Nosso Catálogo</h2>
