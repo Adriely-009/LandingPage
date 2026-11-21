@@ -1,0 +1,306 @@
+/* =========================================
+   RESET & GLOBAIS
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffff;
+    color: #333;
+}
+
+/* =========================================
+   CABEÇALHO (HEADER) & BOTÕES GERAIS
+   ========================================= */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #fff;
+}
+
+.header-logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-principal {
+    height: 100px;
+    width: 100%;
+}
+
+.logo-selo {
+    height: 100px;
+    width: 100%;
+}
+
+.btn-cadastro {
+    background-color: #e31c24;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.btn-cadastro:hover {
+    background-color: #b8141a;
+}
+
+.icon {
+    display: flex;
+    gap: 15px;
+}
+
+.icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.botao, .botao-login-antigo {
+    height: 40px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background-color: #e31c24;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    border: 2px solid #e31c24;
+    box-sizing: border-box;
+    padding: 0 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.botao:hover, .botao-login-antigo:hover {
+    background-color: #b8141a;
+    border-color: #b8141a;
+}
+
+/* =========================================
+   BANNER PRINCIPAL (FEIRA)
+   ========================================= */
+.feira {
+    width: 100%;
+    height: 450px;
+    background-image: url("imagens/feira.png");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 60px;
+}
+
+.banner-content {
+    max-width: 550px;
+    color: white;
+}
+
+.banner-content h1 {
+    font-size: 42px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.banner-content p {
+    font-size: 24px;
+    line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .container-cards {
+        flex-direction: column;
+    }
+
+    .feira {
+        padding-left: 20px;
+        background-image: url("imagens/feira.png");
+    }
+}
+
+/* =========================================
+   GRID & CARDS DE BENEFÍCIOS
+   ========================================= */
+.grid-beneficios {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .grid-beneficios {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .titulo-banner {
+        font-size: 3rem;
+    }
+}
+
+.card-beneficio {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 1px 3px 0 #2e2e2e;
+    border: 1px solid #F3F4F6;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.card-icone {
+    font-size: 2.25rem;
+    line-height: 1;
+    width: 50px;
+    height: 60px;
+}
+
+.card-desconto {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #F59E0B;
+}
+
+.card-titulo {
+    font-weight: 700;
+    color: #111827;
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+}
+
+.card-texto {
+    color: #4B5563;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.card-imagem-png {
+    width: 80px;        
+    height: 80px;       
+    object-fit: contain; 
+    flex-shrink: 0;      
+}
+
+/* =========================================
+   RODAPÉ (FOOTER)
+   ========================================= */
+.rodape-muffatao {
+    background-color: #0b022b;
+    color: #ffffff;
+    padding: 40px 20px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+  
+.rodape-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+  
+.rodape-coluna {
+    flex: 1;
+    min-width: 250px;
+}
+  
+.rodape-coluna h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+  
+.rodape-coluna ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+  
+.rodape-coluna ul li {
+    margin-bottom: 8px;
+    color: #d1cbe5; 
+}
+  
+.rodape-coluna ul li strong {
+    color: #ffffff;
+}
+  
+.rodape-coluna.central {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+  
+.logo-rodape {
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+}
+  
+.icones-sociais {
+    display: flex;
+    gap: 15px;
+}
+  
+.icones-sociais a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    text-indent: -9999px; 
+    position: relative;
+}
+  
+.icones-sociais a.icone-fb::before { content: "f"; position: absolute; top: 8px; left: 14px; color: #0b022b; font-weight: bold; text-indent: 0; }
+.icones-sociais a.icone-ig::before { content: "📷"; position: absolute; top: 8px; left: 9px; color: #0b022b; text-indent: 0; font-size: 14px; }
+
+.rodape-coluna.info p {
+    margin: 0 0 8px 0;
+    color: #d1cbe5;
+}
+  
+.rodape-coluna .direitos-autorais {
+    margin-top: 30px;
+    font-size: 12px;
+    color: #8c82b0;
+}
+
+@media (max-width: 768px) {
+    .rodape-container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .rodape-coluna.central {
+      order: -1; 
+    }
+}
